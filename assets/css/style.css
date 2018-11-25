@@ -1,0 +1,52 @@
+/*
+
+
+Geography Triva Style
+Brett Billman November 2018
+
+*/
+
+/* 
+font-family: 'Carter One', cursive;
+font-family: 'Special Elite', cursive;
+font-family: 'El Messiri', sans-serif; 
+*/
+
+body, html {
+    height: 100%;
+}
+
+
+.bg {
+    background-image: url("../images/antique-map-bg.jpg");
+    height: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+section {
+    margin: auto;
+    width: 70%;
+    height: 70%;
+    background-image: url("../images/redox_01.png");
+    padding: 20px;
+}
+
+#question {
+    display: block;
+}
+
+/*-----------Media Query-----------*/
+
+@media only screen and (max-width: 900px) {
+    section {
+        
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    section {
+        
+    }
+}
