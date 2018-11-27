@@ -57,40 +57,38 @@ const trivia = [
     },
     { //#6
         question: "The biggest desert in the world is...?",
-        answers: {
-            a: "Great Australian",
-            b: "Arabian",
-            c: "Sahara"
-        },
-        correctAnswer: "c"
+        answers: [
+            "Great Australian",
+            "Arabian",
+            "Sahara"
+        ],
+        correctAnswer: "Sahara"
     },
 ]
 
-let currentQuestion = "";
+let currentQuestion;
+let currentAnswers;
 let start = false;
 let time = 30;
 let intervalTime;
 
 $(document).ready(function() {
 
-    //Loop through trivia object to separate questions and answers. Then store them in new currentQuestion var.
-    for (let i = 0; i < trivia.length; i++) {
-        currentQuestion = trivia[i];
-    }
+    trivia.forEach(function (q) {
+        currentQuestion = q.question
+        console.log(currentQuestion);
+        currentAnswers = q.answers
+        console.log(currentAnswers);
+    });
 
-    //How do we loop through the answers of the currentQuestion?
-    /*for (let n = 0; n < currentQuestion.answers; n++) {
-    var answerBtn = $("<button>");
-    var currentAnswers = currentQuestion.answers[n];
-    console.log(currentAnswers);
-    }*/
+
 
 
     $("#start-btn").on("click", function(){
 
         $("#start-btn").hide();
 
-        $("#display-question").text(currentQuestion.question);
+        $("#display-question").text(currentQuestion);
 
         $("#display-time").text("Time remaining " + time);
 
@@ -98,7 +96,7 @@ $(document).ready(function() {
 
     });
 
-    console.log(currentQuestion);
+    // console.log(currentQuestion);
 
     //------- Timer Functions Start -------//
     //Sets the pace of the timer. 1 second in this case.
@@ -121,7 +119,9 @@ $(document).ready(function() {
     }
     //------- Timer Functions End -------//
 
+
 });
+
 
 
 

@@ -7,28 +7,54 @@ Brett Billman November 2018
 */
 
 /* 
-font-family: 'Carter One', cursive;
 font-family: 'Special Elite', cursive;
 font-family: 'El Messiri', sans-serif; 
 */
 
-body, html {
+* {
+    text-align: center;
+    font-family: 'Special Elite', cursive;
+}
+
+html {
     height: 100%;
 }
 
-
-.bg {
+body {
     background-image: url("../images/antique-map-bg.jpg");
-    height: 100%;
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
 }
 
-section {
+h1 {
+    margin: 50px 0px;
+    font-size: 30px;
+}
+
+h2 {
+    margin: 50px 0px;
+    font-size: 20px;
+}
+
+button {
+    margin: 50px 0px;
+    padding: 10px 30px;
+    background: none;
+    font-size: 20px;
+    border: 3px solid black;
+}
+
+button:hover {
+    background: black;
+    color: white;
+    transition: 0.5s;
+}
+
+#main-container {
     margin: auto;
+    margin-top: 50px;
     width: 70%;
-    height: 70%;
     background-image: url("../images/redox_01.png");
     padding: 20px;
 }
