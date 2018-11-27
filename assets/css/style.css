@@ -27,22 +27,43 @@ body {
     background-size: cover;
 }
 
+h1, h2 {
+    margin: 100px 0px;
+}
+
 h1 {
-    margin: 50px 0px;
-    font-size: 30px;
+    font-size: 50px;
 }
 
 h2 {
-    margin: 50px 0px;
+    font-size: 30px;
+}
+
+h3 {
+    margin: 15px 0px;
+    padding: 20px 50px;
     font-size: 20px;
+}
+
+h3:hover {
+    background: black;
+    color: white;
+    cursor: pointer;
+}
+
+h3:focus {
+    background: black;
+    color: white;
 }
 
 button {
     margin: 50px 0px;
-    padding: 10px 30px;
+    padding: 10px 30px 5px 30px;
     background: none;
     font-size: 20px;
     border: 3px solid black;
+    text-transform: uppercase;
+
 }
 
 button:hover {

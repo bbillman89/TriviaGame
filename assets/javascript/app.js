@@ -11,49 +11,49 @@ Brett Billman November 2018
 const trivia = [
     { //#1
         question: "Iceland is covered in ice",
-        answers: {
-            a: "True",
-            b: "False"
-        },
-        correctAnswer: "b"
+        answers: [
+            "True",
+            "False"
+        ],
+        correctAnswer: "False"
     },
     { //#2
         question: "Which ocean lies on the east coast of the United States?",
-        answers: {
-            a: "Eastern",
-            b: "Atlantic",
-            c: "Indian",
-            d: "Pacific"
-        },
-        correctAnswer: "b"
+        answers: [
+            "Eastern",
+            "Atlantic",
+            "Indian",
+            "Pacific"
+        ],
+        correctAnswer: "Atlantic"
     },
     { //#3
         question: "Which is the world's highest mountain?",
-        answers: {
-            a: "Mount Everest",
-            b: "Makalu",
-            c: "Kilimanjaro",
-            d: "K2"
-        },
-        correctAnswer: "a"
+        answers: [
+            "Mount Everest",
+            "Makalu",
+            "Kilimanjaro",
+            "K2"
+        ],
+        correctAnswer: "Mount Everest"
     },
     { //#4
         question: "How many Great Lakes are there?",
-        answers: {
-            a: "Three",
-            b: "Five",
-            c: "Six"
-        },
-        correctAnswer: "b"
+        answers: [
+            "Three",
+            "Five",
+            "Six"
+        ],
+        correctAnswer: "Five"
     },
     { //#5
         question: "Which is the longest river in the U.S.?",
-        answers: {
-            a: "Colorado River",
-            b: "Missouri River",
-            c: "Yukon River"
-        },
-        correctAnswer: "b"
+        answers: [
+            "Colorado River",
+            "Missouri River",
+            "Yukon River"
+        ],
+        correctAnswer: "Missouri River"
     },
     { //#6
         question: "The biggest desert in the world is...?",
@@ -68,35 +68,52 @@ const trivia = [
 
 let currentQuestion;
 let currentAnswers;
-let start = false;
+let theAnswer;
+//let start = false;
 let time = 30;
 let intervalTime;
 
 $(document).ready(function() {
 
+    //Breakup the questions and answers
     trivia.forEach(function (q) {
         currentQuestion = q.question
-        console.log(currentQuestion);
+        //console.log(currentQuestion);
         currentAnswers = q.answers
         console.log(currentAnswers);
+        theAnswer = q.correctAnswer
+        //console.log(theAnswer);
     });
 
 
 
+    function displayAnswers() {
+        
+        for (var a = 0; a < currentAnswers.length; a++) {
+            answerBtn = $("<h3>");
+            answerBtn.addClass("answer-button");
+            answerBtn.text(currentAnswers[a]);
+            $("#display-question").append(answerBtn);
+        }
+    
+    }
 
-    $("#start-btn").on("click", function(){
 
-        $("#start-btn").hide();
 
-        $("#display-question").text(currentQuestion);
-
-        $("#display-time").text("Time remaining " + time);
-
-        runTimer();
-
+    $(".answer-button").on("click", function() {
+        var selectedAnswer =
+        checkAnswer();
     });
 
-    // console.log(currentQuestion);
+
+
+    function checkAnswer () {
+        if (currentAnswers === theAnswer) {
+
+        }
+    }
+
+
 
     //------- Timer Functions Start -------//
     //Sets the pace of the timer. 1 second in this case.
@@ -119,6 +136,24 @@ $(document).ready(function() {
     }
     //------- Timer Functions End -------//
 
+
+
+    //This starts the game
+    $("#start-btn").on("click", function(){
+
+        $("#start-btn").hide();
+
+        $("#display-question").text(currentQuestion);
+
+        //console.log(currentQuestion);
+
+        $("#display-time").text("Time remaining " + time);
+
+        runTimer();
+
+        displayAnswers();
+
+    });
 
 });
 
