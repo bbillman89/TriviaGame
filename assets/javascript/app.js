@@ -6,16 +6,15 @@ Brett Billman November 2018
 */
 
 
-//Global Variables
-
+//Trivia Object
 const trivia = [
     { //#1
-        question: "Iceland is covered in ice",
+        question: "Is Iceland covered in ice?",
         answers: [
-            "True",
-            "False"
+            "Yes",
+            "No"
         ],
-        correctAnswer: "False"
+        correctAnswer: "No"
     },
     { //#2
         question: "Which ocean lies on the east coast of the United States?",
@@ -66,71 +65,69 @@ const trivia = [
     },
 ]
 
-let currentQuestion;
-let currentAnswers;
-let theAnswer;
-//let start = false;
+//Global Variable
+var selectedAnswer;
 let time = 30;
 let intervalTime;
+var index = 0;
 
 $(document).ready(function() {
 
-    //Breakup the questions and answers
-    trivia.forEach(function (q) {
-        currentQuestion = q.question
-        //console.log(currentQuestion);
-        currentAnswers = q.answers
-        console.log(currentAnswers);
-        theAnswer = q.correctAnswer
-        //console.log(theAnswer);
-    });
 
+    function displayQuestion() {
+
+        $("#display-question").text(trivia[0].question);
+        
+        $().bind("click", function(){
+            checkAnswer();
+            trivia.question++;
+        });
+    }
 
 
     function displayAnswers() {
         
-        for (var a = 0; a < currentAnswers.length; a++) {
-            answerBtn = $("<h3>");
+        for (let a = 0; a < trivia[index].answers.length; a++) {
+            
+            let answerBtn = $("<h3>");
             answerBtn.addClass("answer-button");
             answerBtn.text(currentAnswers[a]);
             $("#display-question").append(answerBtn);
+            
+            $(answerBtn).bind("click",function(){
+                selectedAnswer = $(this).html();
+                console.log(selectedAnswer);
+            });
         }
     
     }
 
 
 
-    $(".answer-button").on("click", function() {
-        var selectedAnswer =
-        checkAnswer();
-    });
-
-
-
     function checkAnswer () {
-        if (currentAnswers === theAnswer) {
-
+       
+        if (selectedAnswer === theAnswer) {
+            displayQuestion();
         }
     }
 
 
 
     //------- Timer Functions Start -------//
-    //Sets the pace of the timer. 1 second in this case.
     function runTimer() {
         clearInterval(intervalTime);
         intervalTime = setInterval(decrementTime, 1000);
     }
-    //Tells the time variable to decrease and sets the display on the html.
+
     function decrementTime() {
         time--;
         $("#display-time").text("Time remaining " + time);
-        //Stops the timer.
+        
         if (time === 0) {
             stopTimer();
         }
     }
-    //Tells the interval to stop.
+
     function stopTimer () {
         clearInterval(intervalTime);
     }
@@ -140,19 +137,11 @@ $(document).ready(function() {
 
     //This starts the game
     $("#start-btn").on("click", function(){
-
         $("#start-btn").hide();
-
-        $("#display-question").text(currentQuestion);
-
-        //console.log(currentQuestion);
-
         $("#display-time").text("Time remaining " + time);
-
         runTimer();
-
+        displayQuestion();
         displayAnswers();
-
     });
 
 });
