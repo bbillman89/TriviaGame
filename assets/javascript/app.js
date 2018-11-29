@@ -66,24 +66,26 @@ const trivia = [
 ]
 
 //Global Variable
-var selectedAnswer;
+let selectedAnswer;
+let test;
 let time = 30;
 let intervalTime;
-var index = 0;
+let index = 0;
 
 $(document).ready(function() {
 
-
     function displayQuestion() {
-
-        $("#display-question").text(trivia[0].question);
-        
-        $().bind("click", function(){
-            checkAnswer();
-            trivia.question++;
-        });
+        $("#display-question").text(trivia[index].question);
     }
-
+    
+    function theAnswerIs() {
+        test = trivia[index].correctAnswer;
+        console.log(test);
+        /*let displayCorrect = $("<h3>");
+        displayCorrect.text(test);
+        displayCorrect.addClass("correct-answer");
+        $("#display-question").append(displayCorrect);*/
+    }
 
     function displayAnswers() {
         
@@ -91,30 +93,44 @@ $(document).ready(function() {
             
             let answerBtn = $("<h3>");
             answerBtn.addClass("answer-button");
-            answerBtn.text(currentAnswers[a]);
+            answerBtn.text(trivia[index].answers[a]);
             $("#display-question").append(answerBtn);
             
             $(answerBtn).bind("click",function(){
                 selectedAnswer = $(this).html();
-                console.log(selectedAnswer);
+                //console.log(selectedAnswer);
+                checkAnswer();
+                displayQuestion();
+                displayAnswers();
+                theAnswerIs();
+                time = 31;
             });
         }
-    
+        
     }
 
 
 
     function checkAnswer () {
        
-        if (selectedAnswer === theAnswer) {
-            displayQuestion();
+        if (selectedAnswer === test) {
+            $(".correct-answer").css({"background-color": "green", "color": "white"});
+            alert("Correct!");
+        } else {
+            alert("Wrong Ding Dong!");
+            $(".answer-button").css({"background-color": "red", "color": "white"});
         }
+        if (time === 0) {
+            alert("The time has run out!");
+        }
+        index++;
     }
 
 
 
     //------- Timer Functions Start -------//
     function runTimer() {
+        $("#display-time").text("Time remaining " + time);
         clearInterval(intervalTime);
         intervalTime = setInterval(decrementTime, 1000);
     }
@@ -138,10 +154,10 @@ $(document).ready(function() {
     //This starts the game
     $("#start-btn").on("click", function(){
         $("#start-btn").hide();
-        $("#display-time").text("Time remaining " + time);
         runTimer();
         displayQuestion();
         displayAnswers();
+        theAnswerIs();
     });
 
 });
