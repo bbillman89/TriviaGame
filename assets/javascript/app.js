@@ -3,6 +3,8 @@
 Geography Trivia App
 Brett Billman November 2018
 
+This app needs cleaned up. If when I get time.
+
 */
 
 
